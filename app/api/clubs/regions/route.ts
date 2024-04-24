@@ -16,5 +16,8 @@ export const GET = async () => {
 
     } catch (error) {
         console.error('Error fetching club regions:', error);
+        return NextResponse.json({
+            "message":"There is an error in api"
+        })
     }
 }

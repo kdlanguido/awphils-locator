@@ -42,7 +42,7 @@ export default function ClubsCarousel() {
             getAllClubs().then((data) => {
                 setClubsFoundState(data)
             })
-        }else{
+        } else {
             setClubsFoundState(clubsFound)
         }
     }, [clubsFound]);

@@ -4,6 +4,7 @@ import Clubs from '@/models/Clubs';
 
 export const GET = async (req: Request) => {
     try {
+        
         await connectToDB();
 
         const url = new URL(req.url)
@@ -12,9 +13,9 @@ export const GET = async (req: Request) => {
         let clubs;
 
         if (parameters.has('name')) {
-            clubs = await GetClubsByClubname(parameters.get('name') as string)
+            clubs = await Clubs.find({ name: parameters.get('name') })
         } else if (parameters.has('region')) {
-            clubs = await GetClubsByRegion(parameters.get('region') as string)
+            clubs = await Clubs.find({ region: parameters.get('region') })
         } else {
             clubs = await Clubs.find({});
         }
@@ -23,21 +24,8 @@ export const GET = async (req: Request) => {
 
     } catch (error) {
         console.error('Error fetching clubs:', error);
-    }
-}
-
-const GetClubsByRegion = async (region: string) => {
-    try {
-        return await Clubs.find({ region: region });
-    } catch (error) {
-        console.error('Error fetching clubs:', error);
-    }
-}
-
-const GetClubsByClubname = async (name: string) => {
-    try {
-        return await Clubs.find({ name: name });
-    } catch (error) {
-        console.error('Error fetching clubs:', error);
+        return NextResponse.json({
+            "message": "There is an error in api"
+        })
     }
 }
