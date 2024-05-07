@@ -41,8 +41,9 @@ const ClubsCarousel = () => {
             }
             setIsLoading(false);
         };
+
         fetchClubs();
-    }, [clubsFound, selectedRegion]);
+    }, [clubsFound]);
 
     const handleClick = (club: IClub) => {
         dispatch(setSelectedClubInfo([club]));
@@ -50,27 +51,30 @@ const ClubsCarousel = () => {
     };
 
     return (
-        <Card variant="outlined" className="w-full">
-            <LinearProgress variant="soft" sx={{ display: isLoading ? 'block' : 'none' }} />
-            {!isLoading && (
-                <List sx={{ py: 'var(--ListDivider-gap)' }}>
-                    {clubsFoundState.map((club: IClub, index: number) => (
-                        <React.Fragment key={index}>
-                            <ListItem onClick={() => handleClick(club)}>
-                                <ListItemButton sx={{ gap: 2 }}>
-                                    <img src={club.logo} alt={club.name} style={{ height: '100px', width: '100px', objectFit: 'cover' }} />
-                                    <ListItemContent>
-                                        <Typography fontWeight="md">{club.name}</Typography>
-                                        <Typography level="body-sm">{club.address}</Typography>
-                                    </ListItemContent>
-                                </ListItemButton>
-                            </ListItem>
-                            {index !== clubsFoundState.length - 1 && <ListDivider />}
-                        </React.Fragment>
-                    ))}
-                </List>
-            )}
-        </Card>
+        <>
+            <Card variant="outlined" className="w-full" sx={{ maxHeight: '47vh', overflowY: 'auto' }}>
+                <LinearProgress variant="soft" thickness={2} sx={{ display: isLoading ? 'block' : 'none', color: `#E4BD08` }} />
+                {!isLoading && (
+                    <List sx={{ py: 'var(--ListDivider-gap)' }}>
+                        {clubsFoundState.map((club: IClub, index: number) => (
+                            <React.Fragment key={index}>
+                                <ListItem onClick={() => handleClick(club)}>
+                                    <ListItemButton sx={{ gap: 2 }}>
+                                        <img src={club.logo} alt={club.name} style={{ height: '100px', width: '100px', objectFit: 'cover' }} />
+                                        <ListItemContent>
+                                            <Typography fontWeight="md">{club.name}</Typography>
+                                            <Typography level="body-sm">{club.address}</Typography>
+                                        </ListItemContent>
+                                    </ListItemButton>
+                                </ListItem>
+                                {index !== clubsFoundState.length - 1 && <ListDivider />}
+                            </React.Fragment>
+                        ))}
+                    </List>
+                )}
+            </Card>
+            <small className='w-full' style={{ textAlign: 'right' }}>Showing clubs from : {(!selectedRegion || selectedRegion === 'all') ? 'All Regions' : selectedRegion}</small>
+        </>
     );
 };
 

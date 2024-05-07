@@ -5,7 +5,7 @@ import ClubsCarousel from "@/components/ClubsCarousel/ClubsCarousel";
 export default function Home() {
   return (
     <main>
-      <div className="font-mono flex items-center justify-end p-10 pb-0">
+      <div className="font-mono flex items-center justify-end p-10 pb-0 pt-5">
         Developed By
         <Image
           src="/tatag.png"
@@ -16,7 +16,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="w-full flex flex-col items-center align-center mb-10 h-5/6 p-10">
+      <div className="w-full flex flex-col items-center align-center mb-10 h-5/6 p-10 py-0">
         <Image
           src="/aw_logo.jpg"
           alt="Vercel Logo"

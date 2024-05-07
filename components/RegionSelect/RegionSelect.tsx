@@ -17,7 +17,6 @@ export default function RegionSelect() {
         const res = await fetch("/api/clubs/regions")
         const data = await res.json();
         setRegions(data)
-        console.log(data)
     }
 
     const handleChange = (event: React.SyntheticEvent | null, selectedRegion: string | null,) => {
@@ -26,10 +25,10 @@ export default function RegionSelect() {
 
     useEffect(() => {
         fetchRegions()
-    })
+    },[])
 
     return (
-        <Select placeholder="Select Region..." onClick={fetchRegions} onChange={handleChange} sx={{ width: '80%' }}>
+        <Select placeholder="Select region..." onChange={handleChange} sx={{ width: '80%' }}>
             {
                 <Option key={0} value={'all'}>
                     {'All Clubs'}

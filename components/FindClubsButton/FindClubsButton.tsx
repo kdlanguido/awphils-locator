@@ -17,7 +17,6 @@ const FindClubsButton = () => {
         try {
             const clubsFound = await getClubsByRegion(selectedRegion)
             dispatch(setClubsFound(clubsFound))
-            console.log(clubsFound)
         } catch (error) {
             console.error('Error fetching clubs:', error);
         }
