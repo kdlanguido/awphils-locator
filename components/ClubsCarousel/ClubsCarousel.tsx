@@ -106,13 +106,12 @@ const ClubsCarousel = () => {
                     <Grid
                         container
                         spacing={{ xs: 2, md: 3 }}
-                        columns={{ xs: 4, sm: 8, md: 12 }}
                         sx={{ flexGrow: 1 }}
                     >
                         {
                             clubsFoundState.map((club: IClub, index: number) => (
 
-                                <Grid xs={2} sm={4} md={4} key={index}>
+                                <Grid sm={12} md={4} lg={3} key={index}>
 
                                     <ListItem onClick={() => handleClick(club)}>
                                         <ListItemButton sx={{ gap: 2 }}>
