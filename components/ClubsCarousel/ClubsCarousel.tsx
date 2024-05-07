@@ -25,6 +25,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { RootState } from '@/app/globalredux/store';
 import { setSelectedClubInfo, setClubsFound, IClub } from '@/app/globalredux/features/clubs/clubSlice';
+import { setCarouselIsGrid } from '@/app/globalredux/features/subscription/subscriptionSlice';
 import Grid from '@mui/joy/Grid';
 
 const getAllClubs = async () => {
@@ -42,6 +43,7 @@ const ClubsCarousel = () => {
 
     const clubsFound = useSelector((state: RootState) => state.club.clubsFound);
     const selectedRegion = useSelector((state: RootState) => state.club.selectedRegion);
+    const carouselIsGrid = useSelector((state: RootState) => state.subscription.carouselIsGrid);
 
 
     const router = useRouter();
@@ -76,14 +78,14 @@ const ClubsCarousel = () => {
 
                 <ButtonGroup className="ml-auto items-end justify-items-end mb-5" variant="soft" aria-label="tooltip button group">
                     <Tooltip arrow title="Go to profile">
-                        <Button onClick={() => { setDisplayIsGrid(true) }} startDecorator={<ViewModuleIcon />}>Grid</Button>
+                        <Button onClick={() => { dispatch(setCarouselIsGrid(true)) }} startDecorator={<ViewModuleIcon />}>Grid</Button>
                     </Tooltip>
                     <Tooltip arrow title="Go to profile">
-                        <Button onClick={() => { setDisplayIsGrid(false) }} startDecorator={<ViewListIcon />}>List</Button>
+                        <Button onClick={() => { dispatch(setCarouselIsGrid(false)) }} startDecorator={<ViewListIcon />}>List</Button>
                     </Tooltip>
                 </ButtonGroup>
 
-                {(!isLoading && !displayIsGrid) && (
+                {(!isLoading && !carouselIsGrid) && (
                     <List sx={{ py: 'var(--ListDivider-gap)' }}>
                         {clubsFoundState.map((club: IClub, index: number) => (
                             <React.Fragment key={index}>
@@ -102,7 +104,7 @@ const ClubsCarousel = () => {
                     </List>
                 )}
 
-                {(!isLoading && displayIsGrid) && (
+                {(!isLoading && carouselIsGrid) && (
                     <Grid
                         container
                         spacing={{ xs: 2, md: 3 }}
