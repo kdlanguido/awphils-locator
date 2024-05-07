@@ -17,6 +17,8 @@ export default function RegionSelect() {
         const res = await fetch("/api/clubs/regions")
         const data = await res.json();
         setRegions(data)
+
+        console.log(data)
     }
 
     const handleChange = (
