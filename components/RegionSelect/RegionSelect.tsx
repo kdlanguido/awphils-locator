@@ -20,10 +20,7 @@ export default function RegionSelect() {
         console.log(data)
     }
 
-    const handleChange = (
-        event: React.SyntheticEvent | null,
-        selectedRegion: string | null,
-    ) => {
+    const handleChange = (event: React.SyntheticEvent | null, selectedRegion: string | null,) => {
         dispatch(setSelectedRegion(selectedRegion ?? ""))
     };
 
