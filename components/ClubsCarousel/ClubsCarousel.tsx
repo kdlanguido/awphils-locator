@@ -9,12 +9,15 @@ import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemButton from '@mui/joy/ListItemButton';
+import LinearProgress from '@mui/joy/LinearProgress';
+
 
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/globalredux/store';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { setSelectedClubInfo, setClubsFound, IClub } from '@/app/globalredux/features/clubs/clubSlice';
+
 
 const getAllClubs = async () => {
     const response = await fetch(`/api/clubs`);
@@ -26,6 +29,9 @@ const getAllClubs = async () => {
 export default function ClubsCarousel() {
 
     const [clubsFoundState, setClubsFoundState] = useState<any>([]);
+    const [isLoading, setIsLoading] = useState<any>(true);
+
+
     let clubsFound = useSelector((state: RootState) => state.club.clubsFound)
     const selectedRegion = useSelector((state: RootState) => state.club.selectedRegion)
 
@@ -38,6 +44,7 @@ export default function ClubsCarousel() {
     }
 
     useEffect(() => {
+        setIsLoading(true)
         if (!selectedRegion || selectedRegion == 'all') {
             getAllClubs().then((data) => {
                 setClubsFoundState(data)
@@ -45,11 +52,13 @@ export default function ClubsCarousel() {
         } else {
             setClubsFoundState(clubsFound)
         }
+        setIsLoading(false)
     }, [clubsFound]);
 
 
     return (
         <Card variant="outlined" className="w-full">
+            <LinearProgress variant="soft" sx={{ display: isLoading ? `block` : `none` }} />
             <List sx={{ py: 'var(--ListDivider-gap)' }}>
                 {clubsFoundState.map((club: IClub, index: number) => (
                     <React.Fragment key={index}>
