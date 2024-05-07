@@ -26,7 +26,7 @@ const FindClubsButton = () => {
         <Button
             variant="soft"
             startDecorator={<TravelExploreIcon />}
-            className='ml-3 sm:w-20 md:w-1/5 lg:w-64'
+            className=' sm:w-20 md:w-1/5 lg:w-64'
             onClick={handleFindClubs}>
             <span className="hidden lg:block">
                 Find Clubs
