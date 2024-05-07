@@ -24,7 +24,7 @@ export default function Home() {
           height={200}
           className="mb-5 rounded"
         />
-        <p className={`mb-1 text-2xl font-semibold`}>ArmWrestling Philippines Club Locator</p>
+        <p className={`mb-1 text-2xl font-semibold`}>Armwrestling Philippines Club Locator</p>
         <small className={`mb-5`}>Discover clubs nearby that interest you and consider joining them.</small>
         <TeamFinder />
         <ClubsCarousel />
