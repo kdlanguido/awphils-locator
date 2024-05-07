@@ -74,7 +74,7 @@ const ClubsCarousel = () => {
             <Card variant="outlined" className="w-full" sx={{ maxHeight: '47vh', overflowY: 'auto' }}>
                 <LinearProgress variant="soft" thickness={2} sx={{ display: isLoading ? 'block' : 'none', color: `#E4BD08` }} />
 
-                <ButtonGroup className="ml-auto items-end justify-items-end" variant="soft" aria-label="tooltip button group">
+                <ButtonGroup className="ml-auto items-end justify-items-end mb-5" variant="soft" aria-label="tooltip button group">
                     <Tooltip arrow title="Go to profile">
                         <Button onClick={() => { setDisplayIsGrid(true) }} startDecorator={<ViewModuleIcon />}>Grid</Button>
                     </Tooltip>
