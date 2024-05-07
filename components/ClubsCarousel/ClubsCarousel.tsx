@@ -36,7 +36,7 @@ const getAllClubs = async () => {
 const ClubsCarousel = () => {
     const [clubsFoundState, setClubsFoundState] = useState<any>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [displayIsGrid, setDisplayIsGrid] = useState(true);
+    const [displayIsGrid, setDisplayIsGrid] = useState(false);
     const [showingRegion, setShowingRegion] = useState('All Regions');
 
 
